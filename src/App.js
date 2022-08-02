@@ -1,22 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route } from "react-router-dom";
+import NavBar from './components/NavBar';
+import { useState } from 'react';
+import SignIn from './Pages/SignIn';
+import bootstrap from 'bootstrap';
+import { faFontAwesome } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
+  const [isAuthLoading, setIsAuthLoading] = useState(false);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Routes>
+        <Route path="/" element={<NavBar
+            isAuthLoading={isAuthLoading}
+            setIsAuthLoading={setIsAuthLoading}
+          />}></Route>
+        <Route element={<SignIn/>} components={SignIn} path='/create-user' ></Route>
+
+        </Routes>
       </header>
     </div>
   );
